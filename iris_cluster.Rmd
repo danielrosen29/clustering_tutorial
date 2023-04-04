@@ -1,7 +1,8 @@
 ---
 title: "Clustering"
-output: html_document
+output: github_document
 date: "2023-04-03"
+always_allow_html: true
 ---
 
 ```{r setup, include=FALSE}
@@ -19,11 +20,11 @@ library(janitor)
 ## Loading the data set
 ```{r}
 data <- iris %>% clean_names()
-head(dat)
+head(data)
 ```
 Let's see which types of species of irises there are.
 ```{r}
-unique(dat$species)
+unique(data$species)
 ```
 We are going to do a binary classification, so let's only keep two of the species and set 
 'setosa' rows to 1 and the other to 0
@@ -117,7 +118,7 @@ clust_test$class = factor(m2$cluster-1)
 clust_test
 ```
 ```{r}
-testClust %>%
+clust_test %>%
   ggplot(aes(x = sepal_length, y = sepal_width, color=class)) +
   geom_point() +
   geom_point(data=data.frame(m2$centers),
